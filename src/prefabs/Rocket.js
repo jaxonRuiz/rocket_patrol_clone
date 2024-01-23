@@ -11,6 +11,13 @@ class Rocket extends Phaser.GameObjects.Sprite {
         this.isFiring = false; // tracks rocket firing status
         this.moveSpeed = 2;
         // quick curiosity, when to use this.var = value instead of let variable = value ?
+        // answer (i think) this.var set it for the global scene
+        // using var creates it only for the current function
+        // using let or const are for block-scoped variables
+        
+        // adding sfx
+        // will make sfxShot available to the Rocket.js object prefab
+        this.sfxShot = scene.sound.add('sfx-shot');
     }
     update() {
         // adding movement and stuff to rocket object
@@ -30,6 +37,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
         // fire button
         if (Phaser.Input.Keyboard.JustDown(keyFIRE)) {
             this.isFiring = true;
+            this.sfxShot.play();
         }
 
         // if fired, move up (recoil effect maybe?)
@@ -42,5 +50,11 @@ class Rocket extends Phaser.GameObjects.Sprite {
             this.isFiring = false;
             this.y = game.config.height - borderUISize - borderPadding;
         }
+    }
+
+    // will reset rocket to ground
+    reset() {
+        this.isFiring = false;
+        this.y = game.config.height - borderUISize - borderPadding;
     }
 }
