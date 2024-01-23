@@ -77,10 +77,10 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        if (this.gameOver && Phaser.INput.Keyboard.JustDown(keyRESET)) {
+        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyRESET)) {
             this.scene.restart();
         }
-        if (this.gameOver && Phaser.INput.Keyboard.JustDown(keyLEFT)) {
+        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
         }
         // adding scrolling effect to starfield sprite (background effect)
